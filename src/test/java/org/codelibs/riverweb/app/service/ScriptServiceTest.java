@@ -3,6 +3,7 @@ package org.codelibs.riverweb.app.service;
 import static org.codelibs.elasticsearch.runner.ElasticsearchClusterRunner.newConfigs;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -40,7 +41,7 @@ public class ScriptServiceTest extends ContainerTestCase {
     }
 
     public void test_javascript_file() throws Exception {
-        File tempFile = File.createTempFile("temp", ".txt");
+        File tempFile = Files.createTempFile("temp", ".txt").toFile();
         tempFile.deleteOnExit();
         FileUtil.writeBytes(tempFile.getAbsolutePath(), "'test';".getBytes());
         String lang = "javascript";

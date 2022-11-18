@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -180,7 +181,7 @@ public class ScrapingTransformer extends HtmlTransformer {
                 return;
             }
 
-            file = File.createTempFile("river-web-", ".tmp");
+            file = Files.createTempFile("river-web-", ".tmp").toFile();
             CopyUtil.copy(responseData.getResponseBody(), file);
             processData(scrapingRule, file, responseData, resultData);
         } catch (final IOException e) {
